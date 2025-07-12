@@ -154,93 +154,65 @@
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>Private</externalSharingModel>
     <fields>
-        <fullName>Carrier__c</fullName>
-        <label>Carrier</label>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Picklist</type>
-        <valueSet>
-            <restricted>true</restricted>
-            <valueSetDefinition>
-                <sorted>false</sorted>
-                <value>
-                    <fullName>FedEx</fullName>
-                    <default>false</default>
-                    <label>FedEx</label>
-                </value>
-                <value>
-                    <fullName>UPS</fullName>
-                    <default>false</default>
-                    <label>UPS</label>
-                </value>
-                <value>
-                    <fullName>DHL</fullName>
-                    <default>false</default>
-                    <label>DHL</label>
-                </value>
-                <value>
-                    <fullName>Local Courier</fullName>
-                    <default>false</default>
-                    <label>Local Courier</label>
-                </value>
-            </valueSetDefinition>
-        </valueSet>
-    </fields>
-    <fields>
-        <fullName>Order__c</fullName>
+        <fullName>Product__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
-        <label>Order</label>
-        <referenceTo>Order</referenceTo>
-        <relationshipLabel>AgriEdge Shipments</relationshipLabel>
-        <relationshipName>AgriEdge_Shipments</relationshipName>
+        <label>Product</label>
+        <referenceTo>Product2</referenceTo>
+        <relationshipLabel>AgriEdge Inventorys</relationshipLabel>
+        <relationshipName>AgriEdge_Inventorys</relationshipName>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
     </fields>
     <fields>
-        <fullName>Status__c</fullName>
-        <label>Status</label>
+        <fullName>Reorder_Level__c</fullName>
+        <externalId>false</externalId>
+        <label>Reorder Level</label>
+        <precision>18</precision>
         <required>false</required>
+        <scale>0</scale>
         <trackTrending>false</trackTrending>
-        <type>Picklist</type>
-        <valueSet>
-            <restricted>true</restricted>
-            <valueSetDefinition>
-                <sorted>false</sorted>
-                <value>
-                    <fullName>Pending</fullName>
-                    <default>false</default>
-                    <label>Pending</label>
-                </value>
-                <value>
-                    <fullName>In Transit</fullName>
-                    <default>false</default>
-                    <label>In Transit</label>
-                </value>
-                <value>
-                    <fullName>Delivered</fullName>
-                    <default>false</default>
-                    <label>Delivered</label>
-                </value>
-            </valueSetDefinition>
-        </valueSet>
+        <type>Number</type>
+        <unique>false</unique>
     </fields>
     <fields>
-        <fullName>Tracking_Number__c</fullName>
+        <fullName>Stock_Quantity__c</fullName>
         <externalId>false</externalId>
-        <label>Tracking Number</label>
-        <length>20</length>
+        <label>Stock Quantity</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Stock_Status__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(Stock_Quantity__c &lt;= Reorder_Level__c, &quot;Low&quot;, &quot;Sufficient&quot;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Stock Status</label>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
     </fields>
-    <label>AgriEdge Shipment</label>
+    <fields>
+        <fullName>Warehouse_Location__c</fullName>
+        <externalId>false</externalId>
+        <label>Warehouse Location</label>
+        <length>25</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>AgriEdge Inventory</label>
     <nameField>
-        <label>AgriEdge Shipment Name</label>
+        <label>AgriEdge Inventory Name</label>
         <type>Text</type>
     </nameField>
-    <pluralLabel>AgriEdge Shipments</pluralLabel>
+    <pluralLabel>AgriEdge Inventorys</pluralLabel>
     <searchLayouts/>
     <sharingModel>ReadWrite</sharingModel>
     <visibility>Public</visibility>
